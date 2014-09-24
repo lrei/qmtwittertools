@@ -115,5 +115,5 @@ stream.pipe(parser);
 
 parser.on('root', function(tweet) {
   var outstr = cleanTweet(tweet);
-  console.log(outstr + '\n');
+  console.log(outstr);
 });
