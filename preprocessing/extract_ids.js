@@ -1,3 +1,4 @@
+// Author: Luis Rei <luis.rei@ijs.si> http://luisrei.com @lmrei
 // extract twitter ids from my NDJ or similar
 var fs = require('fs');
 var stream = require('stream');

@@ -1,4 +1,4 @@
-// Author: Luis Rei
+// Author: Luis Rei <luis.rei@ijs.si> http://luisrei.com @lmrei
 // Reads tweet objects (NDJ) from stdin removes stuff, sends it to stdout
 // Removes:
 //   - user object
