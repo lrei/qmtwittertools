@@ -2,6 +2,32 @@ var isEmpty = function(obj) {
     return Object.keys(obj).length === 0;
 };
 exports.isEmpty = isEmpty;
+  // convert to safe "log" format that works with linux and windows (qminer) 
+var td2log = function (date_str) {
+  var _parseTwitterTime = function (a) { return (a < 10) ? ("0" + a) : a; };
+  var months = {};
+  months["Jan"] = 1; months["Feb"] = 2; months["Mar"] = 3; months["Apr"] = 4;
+  months["May"] = 5; months["Jun"] = 6; months["Jul"] = 7; months["Aug"] = 8;
+  months["Sep"] = 9; months["Oct"] = 10; months["Nov"] = 11; months["Dec"] = 12;
+
+  var date_part = date_str.split(' ');
+  var year = parseInt(date_part[5], 10);
+  var month = months[date_part[1]];
+  var day = parseInt(date_part[2], 10);
+  // prase time
+  var time_part = date_part[3].split(':');
+  var hour = parseInt(time_part[0], 10);
+  var minute = parseInt(time_part[1], 10);
+  var second = parseInt(time_part[2], 10);
+  // return qminer time string
+  return year + "-" +
+      _parseTwitterTime(month) + "-" +
+      _parseTwitterTime(day) + "T" +
+      _parseTwitterTime(hour) + ":" +
+      _parseTwitterTime(minute) + ":" +
+      _parseTwitterTime(second);
+};
+exports.td2log = td2log;
 
 // TwitterDate 'class' 
 exports.TwitterDate = function(twitterDateStr) {
@@ -17,18 +43,21 @@ exports.TwitterDate = function(twitterDateStr) {
     return Date.parse(this.toISOString());
   };
 
+  this.td2log = td2log;
+
   // returns ISO string
   this.toISOString =function() {
     return twitterDateStr.replace(/( +)/, ' UTC$1');
   };
 };
 var TwitterDate = exports.TwitterDate; // internal version
+exports.td2log = exports.TwitterDate.td2log;
+var td2log = exports.TwitterDate.td2log;
 
 // convenience function for TwitterDate.toISOString()
 exports.td2iso = function(text) {
     return text.replace(/( +)/, ' UTC$1');
 };
-var td2iso = exports.td2iso;
 
 // Check if an object with a given date (d)
 // is more recent than the store object (o)
@@ -164,7 +193,7 @@ var doLoadUser = function(u, Users) {
   delete u.entities;
 
   // :created_at
-  if(u.created_at) { u.created_at = td2iso(u.created_at); }
+  if(u.created_at) { u.created_at = td2log(u.created_at); }
   else { u.created_at = null; }
 
 

@@ -54,7 +54,7 @@
       //  return new Date(Date.parse(text.replace(/( +)/, ' UTC$1')));
       //}
       // </pre></code>
-      { "name": "created_at", "type": "datetime", "null": true },
+      { "name": "created_at", "type": "datetime", "null": false },
       
       // favorite count
       { "name": "favorite_count", "type": "int", "null": true }, 

@@ -1,5 +1,5 @@
+// Author: Luis Rei <luis.rei@ijs.si> http://luisrei.com @lmrei
 // QMiner Script for loading tweets
-// Author: Luis Rei <luis.rei@ijs.si> http://luisrei.com
 // jslint options:
 /* global qm: false */
 /* jshint -W089 */
@@ -31,7 +31,7 @@ var loadTweet = function(tweetstr) {
   if('annotations' in t) { delete t.annotations; }
 
   // :created_at
-  if(t.created_at) { t.created_at = tutil.td2iso(t.created_at); }
+  if(t.created_at) { t.created_at = tutil.td2log(t.created_at); }
   else { t.created_at = null; }
   t.last_modified = t.created_at;
 
