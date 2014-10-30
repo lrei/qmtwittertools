@@ -1,5 +1,8 @@
 // Author: Luis Rei <luis.rei@ijs.si> http://luisrei.com @lmrei
 // QMiner Script for loading tweets
+// Author: Luis Rei <luis.rei@ijs.si> http://luisrei.com
+// example:
+// qm start -noserver -script=load_tweets.qm -verbose -file=/DATA/uk_tweets_by_location.txt
 // jslint options:
 /* global qm: false */
 /* jshint -W089 */

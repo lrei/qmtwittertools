@@ -35,5 +35,5 @@ stream.pipe(parser);
 
 parser.on('root', function(tweet) {
   var uid = getUserId(tweet);
-  if(!seen(uid)) { console.log(outstr); }
+  if(!seen(uid)) { console.log(uid); }
 });
